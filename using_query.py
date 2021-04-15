@@ -12,12 +12,12 @@ def groupby_3_10():
     abbr = bpd.DataFrame().assign(
         abbr=['A', 'G', 'K', 'N', 'P', 'Q', 'R'],
         names=['American Home Food Products', 'General Mills', 'Kelloggs', 'Nabisco', 'Post', 'Quaker Oats', 'Ralston Purina']
-    )
+    ).set_index('names')
     lowest = cereals.groupby('mfr').median().get('calories').sort_values(ascending=True).index[0]
-    m1 = abbr[abbr.get('names') == cereals.groupby('mfr').median().get('calories').sort_values(ascending=True).index[0]]
+    m1 = abbr.get('abbr').loc[cereals.groupby('mfr').median().get('calories').sort_values(ascending=True).index[0]]
     print(m1)
 
-query_3_9()
-print('\n\n')
+# query_3_9()
+# print('\n\n')
 groupby_3_10()
 
